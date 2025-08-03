@@ -73,6 +73,7 @@ func (u *Updater) createComposeFileContainerMapping() []*ComposeFile {
 	containers := GetWatchedRunningContainers()
 	cache := make(map[string]*ComposeFile)
 	for _, container := range containers {
+		log.Printf("Watching container %s with ID %s...\n", container.Name, container.ID)
 		var composeFile *ComposeFile
 		if curComposeFile, ok := cache[container.ComposeFile]; ok {
 			composeFile = curComposeFile
@@ -80,7 +81,7 @@ func (u *Updater) createComposeFileContainerMapping() []*ComposeFile {
 			var err error
 			composeFile, err = ParseComposeYaml(container.ComposeFile)
 			if err != nil {
-				log.Printf("Could not parse compose YAML: %s\n", err)
+				log.Printf("Could not parse compose YAML %s: %s\n", container.ComposeFile, err)
 				continue
 			}
 			cache[container.ComposeFile] = composeFile
