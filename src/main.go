@@ -30,6 +30,7 @@ func printHeader() {
 
 func mainLoop() {
 	updater := &Updater{}
+	go Healthcheck();
 	for {
 		updater.PerformComposeUpdates()
 		if GlobalSettings.Once {
