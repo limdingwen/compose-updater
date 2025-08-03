@@ -1,6 +1,8 @@
 ARG ALPINE_VERSION=3.17
 ARG GO_VERSION=1.19
 ARG COMPOSE_VERSION=2.16.0
+ARG DOCKER_VERSION=20.10.24-r2
+ARG CURL_VERSION=8.9.0-r0
 
 FROM golang:${GO_VERSION} AS builder
 RUN export GOBIN=$HOME/work/bin
@@ -13,6 +15,8 @@ RUN CGO_ENABLED=0 go build -ldflags="-w -s" -o main .
 
 FROM alpine:${ALPINE_VERSION}
 ARG COMPOSE_VERSION
+ARG DOCKER_VERSION
+ARG CURL_VERSION
 ARG BUILD_DATE
 ARG VCS_REF
 ARG TARGETPLATFORM
@@ -22,7 +26,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \
         org.label-schema.vcs-url="https://github.com/virtualzone/compose-updater" \
         org.label-schema.schema-version="1.0"
-RUN apk --no-cache add docker curl
+RUN apk --no-cache add docker=$DOCKER_VERSION curl=$CURL_VERSION
 RUN \
     case ${TARGETPLATFORM} in \
       "linux/amd64")  DOWNLOAD_ARCH="x86_64"  ;; \
