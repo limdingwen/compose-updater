@@ -128,13 +128,27 @@ Since Compose Updater works by calling the Compose CLI from within the container
 
 This is why it's important that both sides (e.g. ```/home/docker:/home/docker:ro```) must match, otherwise you may get bind mount errors when an auto update happens.
 
-### Relative Paths with a Windows Host
+### Windows Users
 
-If you have a Windows host, unfortunately, there's no way to have the filepaths match up because the formats are completely different. The workaround for this is to make sure all your auto-updating Compose files only use absolute paths (on the host side), especially in your bind mount. For example:
+If you have a Windows host, your Docker actually runs inside a WSL2 distro,
+which accesses your Windows filesystem via the `/mnt/<disk>` format. Therefore,
+your target service compose file's volumes will look something like this:
 
 ```yaml
 volumes:
-  - "C:\\Users\\Foobar\\Servers\\TestServer\\data:/data"
+  - "./data:/data"
+  - "./config:/config:ro"
+labels:
+  - "docker-compose-watcher.watch=1"
+  - "docker-compose-watcher.dir=/mnt/c/Users/Foobar/TestServer"
+```
+
+While your watcher compose file's volumes will look something like this:
+
+```yaml
+volumes:
+  - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  - "/mnt/c/Users/Foobar:/mnt/c/Users/Foobar:ro"
 ```
 
 ## Governance and Contribution
