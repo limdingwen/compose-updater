@@ -116,6 +116,10 @@ Read more about how to set up the [MQTT](https://www.home-assistant.io/integrati
 
 ## Troubleshooting
 
+### Use Different Directories
+
+The Compose Updater service should not be placed in the same directory with a target service. Otherwise, both will shut down on an update with 0 (zero) code and no additional logs. Ensure they are in separate directories to avoid unintended shutdowns and outages.
+
 ### Relative Paths
 
 Docker Compose resolves relative paths within a Compose file to be absolute paths from the perspective of the Compose CLI ([source](https://github.com/docker/compose/blob/main/pkg/compose/create.go#L1143-L1173)).
