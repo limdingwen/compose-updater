@@ -14,7 +14,6 @@ Currently, Compose Updater doesn't help you when your're using image tags that w
 You'll need to add two labels to the services you want to watch:
 
 ```yaml
-version: '3'
 services:
   web:
     image: nginx:alpine
