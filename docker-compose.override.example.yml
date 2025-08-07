@@ -1,0 +1,20 @@
+services:
+  watcher:
+    volumes:
+      
+    # Mac users, uncomment this and edit your system username on both sides. For
+    # safety, the mount is read-only.
+    #  - "/Users/MyNameHere:/Users/MyNameHere:ro"
+      
+    # Linux users, uncomment this and edit your system username on both sides.
+    # For safety, the mount is read-only.
+    #  - "/home/MyNameHere:/home/MyNameHere:ro"
+    
+    # Windows users, uncomment this and edit your system username on both sides.
+    # For safety, the mount is read-only.
+    #  - "/mnt/c/Users/MyNameHere:/mnt/c/Users/MyNameHere:ro"
+    
+    # Uncomment this if you require the healthcheck endpoint to be exposed
+    # to localhost. Please do not expose it on any networks!
+    # ports:
+    #   - localhost:8080:8080

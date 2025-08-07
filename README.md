@@ -34,22 +34,15 @@ services:
 ```docker-compose-watcher.dir``` specifies the path to the directory where this docker-compose.yml lives. If the file is not named docker-compose.yml, you can instead use the label ```docker-compose-watcher.file``` to specify the correct path and file name. This is necessary because it's not possible to find the docker-compose.yml from a running container.
 
 ### 2. Run Compose Updater
-Run Docker Compose Watcher using compose:
+Copy `docker-compose.override.example.yml` to `docker-compose.override.yml`, and
+uncomment the volumes you require inside, depending if you are running Mac,
+Linux, or Windows.
 
-```yaml
-version: '3'
-services:
-  watcher:
-    image: virtualzone/compose-updater
-    restart: always
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "/home/docker:/home/docker:ro"
-    environment:
-      INTERVAL: 60
+Then, run Compose Updater:
+
+```shell
+docker compose up -d --build
 ```
-
-It's important to mount ```/var/run/docker.sock``` and the directory your compose files reside in (```/home/docker``` in the example above). Please note that in the home directory bind mount (e.g. ```/home/docker:/home/docker:ro```), **both sides must match**. Please see the [Relative Paths](#relative-paths) section for more information.
 
 If the registry you're pulling from require authentification, you could mount `~/.docker/config.json` from the host inside the `watcher` service.
 Assuming your host user is called `ubuntu`, adding this line to the `volumes` declaration of the `watcher` service should work :

@@ -1,0 +1,13 @@
+services:
+  watcher:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    environment:
+      INTERVAL: 60
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080"]
+      interval: 5s
+      timeout: 1s
+      retries: 3
