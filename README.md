@@ -143,7 +143,7 @@ This repository loosely follows the [Collective Code Construction Contract](./C4
 
 We aim to quickly merge pull requests that don't break the codebase, even if there are some initial disagreements. A pull request doesn't have to be perfect; future contributions can always make it better.
 
-Frequent contributors who show dedication and expertise will be promoted to maintainers or admins, giving them the power to approve more pull requests. This is because I am just a volunteer and might leave one day, so promoting contributors ensures that governance remains robust and sustainable.
+Frequent contributors who show dedication and expertise will be promoted to maintainers or admins, giving them the power to approve more pull requests. This is because we are just volunteers and might leave at any time, so promoting contributors ensures that governance remains robust and sustainable.
 
 ## Contributors
 
