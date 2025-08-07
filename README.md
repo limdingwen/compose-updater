@@ -1,11 +1,5 @@
 # Compose Updater
 
-[![](https://img.shields.io/github/actions/workflow/status/virtualzone/compose-updater/build.yml?branch=master)](https://github.com/virtualzone/compose-updater/actions)
-[![](https://img.shields.io/github/v/release/virtualzone/compose-updater)](https://github.com/virtualzone/compose-updater/releases)
-[![](https://img.shields.io/github/release-date/virtualzone/compose-updater)](https://github.com/virtualzone/compose-updater/releases)
-[![](https://img.shields.io/docker/image-size/virtualzone/compose-updater)](https://hub.docker.com/r/virtualzone/compose-updater)
-[![](https://img.shields.io/github/license/virtualzone/compose-updater)](https://github.com/virtualzone/compose-updater/blob/master/LICENSE)
-
 A solution for watching your Docker® containers running via Docker Compose for image updates and automatically restarting the compositions whenever an image is refreshed.
 
 ## Overview
