@@ -49,7 +49,7 @@ services:
       INTERVAL: 60
 ```
 
-It's important to mount ```/var/run/docker.sock``` and the directory your compose files reside in (```/home/docker``` in the example above).
+It's important to mount ```/var/run/docker.sock``` and the directory your compose files reside in (```/home/docker``` in the example above). Please note that in the home directory bind mount (e.g. ```/home/docker:/home/docker:ro```), **both sides must match**. Please see the [Relative Paths](#relative-paths) section for more information.
 
 If the registry you're pulling from require authentification, you could mount `~/.docker/config.json` from the host inside the `watcher` service.
 Assuming your host user is called `ubuntu`, adding this line to the `volumes` declaration of the `watcher` service should work :
@@ -113,6 +113,25 @@ automation:
 ```
 
 Read more about how to set up the [MQTT](https://www.home-assistant.io/integrations/mqtt/) and [Telegram](https://www.home-assistant.io/integrations/telegram/) integrations in Home Assistant.
+
+## Troubleshooting
+
+### Relative Paths
+
+Docker Compose resolves relative paths within a Compose file to be absolute paths from the perspective of the Compose CLI ([source](https://github.com/docker/compose/blob/main/pkg/compose/create.go#L1143-L1173)).
+
+Since Compose Updater works by calling the Compose CLI from within the container, it's important that the filepaths match up with the host filesystem, at least for the directories that contain the Compose files you wish to update.
+
+This is why it's important that both sides (e.g. ```/home/docker:/home/docker:ro```) must match, otherwise you may get bind mount errors when an auto update happens.
+
+### Relative Paths with a Windows Host
+
+If you have a Windows host, unfortunately, there's no way to have the filepaths match up because the formats are completely different. The workaround for this is to make sure all your auto-updating Compose files only use absolute paths (on the host side), especially in your bind mount. For example:
+
+```yaml
+volumes:
+  - "C:\\Users\\Foobar\\Servers\\TestServer\\data:/data"
+```
 
 ## License
 GNU General Public License v3.0
