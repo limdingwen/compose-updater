@@ -133,6 +133,21 @@ volumes:
   - "C:\\Users\\Foobar\\Servers\\TestServer\\data:/data"
 ```
 
+## Governance and Contribution
+
+This repository loosely follows the [Collective Code Construction Contract](./C4.txt), which is somewhat like the [Wikipedia BOLD](https://en.wikipedia.org/wiki/Wikipedia:Be_bold) model.
+
+We aim to quickly merge pull requests that don't break the codebase, even if there are some initial disagreements. A pull request doesn't have to be perfect; future contributions can always make it better.
+
+Frequent contributors who show dedication and expertise will be promoted to maintainers or admins, giving them the power to approve more pull requests. This is because I am just a volunteer and might leave one day, so promoting contributors ensures that governance remains robust and sustainable.
+
+## Contributors
+
+- Heiner
+- Mathéo Cimbaro
+- wtfprogrammer 
+- Lim Ding Wen
+
 ## License
 GNU General Public License v3.0
 
